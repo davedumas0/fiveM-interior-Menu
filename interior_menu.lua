@@ -236,7 +236,7 @@ function customSuites()
 	Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
 end
 function customTower1()
-    RequestIpl("Apa_V_mp_h_01_B")
+    RequestIpl("apa_v_mp_h_01_a")
     markerLoop = false
 	TPPLAYER(GetPlayerPed(PlayerId()), -788.55, 340.37, 216.83)
     DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
@@ -247,7 +247,7 @@ function customTower1()
 	Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
 end
 function customTower2()
-    RequestIpl("apa_stilt_ch2_09c_int")
+    RequestIpl("apa_v_mp_h_01_b")
     markerLoop = false
 	TPPLAYER(GetPlayerPed(PlayerId()), -786.72, 342.81, 187.11)
     DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
@@ -258,7 +258,7 @@ function customTower2()
 	Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
 end
 function customTower3()
-    RequestIpl("Apa_V_mp_h_03_A")
+    RequestIpl("apa_v_mp_h_01_c")
     markerLoop = false
 	TPPLAYER(GetPlayerPed(PlayerId()), -773.42, 332.38, 196.08)
     DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
@@ -525,7 +525,7 @@ function businessOffices()
     options.menu_title = "offices and business menu"
     options.menu_subtitle = "offices and business menu"
     ClearMenu()
-	Menu.addButton("Offices:Arcadius", "businessOfficesArcadius", nil)
+	Menu.addButton("Offices:Arcadius", "businessOfficesArcadius", nil)		
 	Menu.addButton("Offices:Maze Bank Tower", "businessOfficesMazeTower", nil)
 	Menu.addButton("Offices:Maze Bank West", "businessOfficesMazeWest", nil)
 	Menu.addButton("Offices:Lom Bank", "businessOfficesLomBank", nil)
@@ -547,9 +547,66 @@ function businessWarehouseSmall()
  businessOffices()
 end
 function businessOfficesArcadius()
- TPPLAYER(GetPlayerPed(PlayerId()), -139.09, -631.79, 168.81) 
+    options.menu_title = "offices and business menu"
+    options.menu_subtitle = "offices and business menu"
+    ClearMenu()
+	Menu.addButton("Executive Rich", "businessOfficesArcadius1", nil)
+	Menu.addButton("Executive Cool", "businessOfficesArcadius2", nil)
+	Menu.addButton("Executive Contrast", "businessOfficesArcadius3", nil)
+	Menu.addButton("Old Spice Warm", "businessOfficesArcadius4", nil)
+	Menu.addButton("Old Spice Classical", "businessOfficesArcadius5", nil)
+	Menu.addButton("Old Spice Vintage", "businessOfficesArcadius6", nil)
+	Menu.addButton("Power Broker Ice", "businessOfficesArcadius7", nil)
+	Menu.addButton("Power Broker Conservative", "businessOfficesArcadius8", nil)
+	Menu.addButton("Power Broker Polished", "businessOfficesArcadius9", nil)
+    Menu.addButton("~o~BACK TO MAIN MENU", "Main", nil)
+end
+function businessOfficesArcadius1()
+ RequestIpl("ex_dt1_02_office_02b")
+ TPPLAYER(GetPlayerPed(PlayerId()), -141.1987, -620.913, 168.8205) 
  businessOffices()
 end
+function businessOfficesArcadius2()
+ RequestIpl("ex_dt1_02_office_02c")
+ TPPLAYER(GetPlayerPed(PlayerId()), -141.5429, -620.9524, 168.8204) 
+ businessOffices()
+end
+function businessOfficesArcadius3()
+ RequestIpl("ex_dt1_02_office_02a")
+ TPPLAYER(GetPlayerPed(PlayerId()), -141.2896, -620.9618, 168.8204) 
+ businessOffices()
+end
+function businessOfficesArcadius4()
+ RequestIpl("ex_dt1_02_office_01a")
+ TPPLAYER(GetPlayerPed(PlayerId()), -141.4966, -620.8292, 168.8204) 
+ businessOffices()
+end
+function businessOfficesArcadius5()
+ RequestIpl("ex_dt1_02_office_01b")
+ TPPLAYER(GetPlayerPed(PlayerId()), -141.3997, -620.9006, 168.8204) 
+ businessOffices()
+end
+function businessOfficesArcadius6()
+ RequestIpl("ex_dt1_02_office_01c")
+ TPPLAYER(GetPlayerPed(PlayerId()), -141.5361, -620.9186, 168.8204) 
+ businessOffices()
+end
+function businessOfficesArcadius7()
+ RequestIpl("ex_dt1_02_office_03a")
+ TPPLAYER(GetPlayerPed(PlayerId()), -141.392, -621.0451, 168.8204) 
+ businessOffices()
+end
+function businessOfficesArcadius8()
+ RequestIpl("ex_dt1_02_office_03b")
+ TPPLAYER(GetPlayerPed(PlayerId()), -141.1945, -620.8729, 168.8204) 
+ businessOffices()
+end
+function businessOfficesArcadius9()
+ RequestIpl("ex_dt1_02_office_03c")
+ TPPLAYER(GetPlayerPed(PlayerId()), -141.4924, -621.0035, 168.8205) 
+ businessOffices()
+end
+
 function businessOfficesMazeTower()
  TPPLAYER(GetPlayerPed(PlayerId()), -73.09, -816.79, 243.39) 
  businessOffices()
