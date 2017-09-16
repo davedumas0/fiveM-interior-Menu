@@ -214,7 +214,7 @@ function Main()
 	Menu.addButton("business Offices list", "businessOffices", nil)
 	Menu.addButton("bkr clubhouse list", "bikerClubhousesMenu", nil)
 	Menu.addButton("bkr warehouse list", "bikerWarehousesMenu", nil)
-	Menu.addButton("IMP/EXP ", "importExportInteriorDecorationsMenu", nil)
+	Menu.addButton("IMP/EXP ", "importExportInteriorMenu", nil)
 
 end
 --[[*************************************************************]]
@@ -285,6 +285,9 @@ function bikerClubhousesMenu()
 	Menu.addButton("choose the LOST(NPC gang) ", "clubhouseChoose3", nil)
 	Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
 end
+----------------------------------------------------------------------
+------------------clubhouse warehouse stuff---------------------------
+----------------------------------------------------------------------
 function bikerWarehousesMenu()
     markerLoop = false
     DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
@@ -296,19 +299,128 @@ function bikerWarehousesMenu()
 	Menu.addButton("choose weed warehouse", "clubWarehouseWeed", nil)
 	Menu.addButton("choose coke warehouse", "clubWarehouseCoke", nil)
 	Menu.addButton("choose counterfit warehouse", "clubWarehouseCounterfit", nil)
-	Menu.addButton("choose forgeries warehouse", "clubWarehouseForgeries", nil)
+    Menu.addButton("choose Forgeries warehouse", "clubWarehouseForgeries", nil)
 	Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
 end
+----------------------------------------------------------------------
+------------------forgeries warehouse stuff---------------------------
+----------------------------------------------------------------------
 function clubWarehouseForgeries()
- TPPLAYER(GetPlayerPed(PlayerId()), 1164.98, -3196.6, -39.01)
+ --TPPLAYER(GetPlayerPed(PlayerId()), 1164.98, -3196.6, -39.01)
     markerLoop = false
     DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
 	Notify("Press ~r~F5 ~w~to ~g~open~w~/~r~close~w~!")	
     options.menu_title = "clubhouse's"
     options.menu_subtitle = "choose your warehouse contents"
 	ClearMenu()
+	Menu.addButton("choose warehouse interior", "clubWarehouseForgeriesInteriorMenu", nil)
+	Menu.addButton("choose  warehouse security", "clubWarehouseForgeriesSecurityMenu", nil)
+	Menu.addButton("choose  warehouse Equipment", "clubWarehouseForgeriesEquipmentMenu", nil)
+	Menu.addButton("BACK", "bikerWarehousesMenu", nil)
+    Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
+end 
+-----------------------------------------------------------------
+-------------------Forgeries security menu-----------------------
+function clubWarehouseForgeriesSecurityMenu()
+    DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
+	Notify("Press ~r~F5 ~w~to ~g~open~w~/~r~close~w~!")	
+    options.menu_title = "clubhouse's"
+    options.menu_subtitle = "choose your warehouse contents"
+	ClearMenu()
+	Menu.addButton("enable Security low", "enableSecurityLow", nil)
+	Menu.addButton("~r~disable Security low", "disableSecurityLow", nil)
+	Menu.addButton("enable Security High", "enableSecurityHigh", nil)
+	Menu.addButton("~r~disable Security High", "disableSecurityHigh", nil)	
+    Menu.addButton("BACK", "clubWarehouseForgeries", nil)
+	Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
+end
+function enableSecurityLow()
+ EnableInteriorProp(interiorID, "security_low")
+ RefreshInterior(interiorID)
+end
+function disableSecurityLow()
+ DisableInteriorProp(interiorID, "security_low")
+ RefreshInterior(interiorID)
+end
+function enableSecurityHigh()
+ EnableInteriorProp(interiorID, "security_high")
+ RefreshInterior(interiorID)
+end
+function disableSecurityHigh()
+ DisableInteriorProp(interiorID, "security_high")
+ RefreshInterior(interiorID)
+end
+-----------------------------------------------------------------
+-------------------Forgeries interior menu-----------------------
+function clubWarehouseForgeriesInteriorMenu()
+    DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
+	Notify("Press ~r~F5 ~w~to ~g~open~w~/~r~close~w~!")	
+    options.menu_title = "clubhouse's"
+    options.menu_subtitle = "choose your warehouse contents"
+	ClearMenu()
+	Menu.addButton("enable Basic interior", "enableInteriorBasic", nil)
+	Menu.addButton("~r~disable Basic interior", "disableInteriorBasic", nil)
+	Menu.addButton("enable upgrade interior", "enableInteriorBasic", nil)
+	Menu.addButton("~r~disable ugrade interior", "disableInteriorBasic", nil)
+	Menu.addButton("teleport to warehouse", "clubWarehouseForgeries", nil)
+    Menu.addButton("BACK", "clubWarehouseForgeries", nil)	
     Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
 end
+function enableInteriorBasic()
+ EnableInteriorProp(interiorID, "interior_basic")
+ RefreshInterior(interiorID)
+end
+function disableInteriorBasic()
+ DisableInteriorProp(interiorID, "interior_basic")
+ RefreshInterior(interiorID)
+end
+function enableInteriorUpgrade()
+ EnableInteriorProp(interiorID, "interior_upgrade")
+ RefreshInterior(interiorID)
+end
+function disableInteriorUpgrade()
+ DisableInteriorProp(interiorID, "interior_upgrade")
+ RefreshInterior(interiorID)
+end
+-----------------------------------------------------------------
+-------------------Forgeries equipment menu-----------------------
+function clubWarehouseForgeriesEquipmentMenu()
+    DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
+	Notify("Press ~r~F5 ~w~to ~g~open~w~/~r~close~w~!")	
+    options.menu_title = "clubhouse's"
+    options.menu_subtitle = "choose your warehouse contents"
+	ClearMenu()
+	Menu.addButton("enable Basic interior", "enableEquipmentBasic", nil)
+	Menu.addButton("~r~disable Basic interior", "disableEquipmentBasic", nil)
+	Menu.addButton("enable upgrade Equipment", "enableEquipmentUpgrade", nil)
+	Menu.addButton("~r~disable ugrade Equipment", "disableEquipmentUpgrade", nil)
+	Menu.addButton("teleport to warehouse", "clubWarehouseForgeries", nil)
+	Menu.addButton("BACK", "clubWarehouseForgeries", nil)
+    Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
+end
+function enableEquipmentBasic()
+ EnableInteriorProp(interiorID, "Equipment_basic")
+ RefreshInterior(interiorID)
+end
+function disableEquipmentBasic()
+ DisableInteriorProp(interiorID, "Equipment_basic")
+ RefreshInterior(interiorID)
+end
+function enableEquipmentUpgrade()
+ EnableInteriorProp(interiorID, "Equipment_upgrade")
+ RefreshInterior(interiorID)
+end
+function disableEquipmentUpgrade()
+ DisableInteriorProp(interiorID, "Equipment_upgrade")
+ RefreshInterior(interiorID)
+end
+
+
+
+
+----------------------------------------------------------------------
+------------------counterfit warehouse stuff-------------------------------
+----------------------------------------------------------------------
 function clubWarehouseCounterfit()
  TPPLAYER(GetPlayerPed(PlayerId()), 1124.52, -3196.6, -40.1)
     markerLoop = false
@@ -319,6 +431,9 @@ function clubWarehouseCounterfit()
 	ClearMenu()
     Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
 end
+----------------------------------------------------------------------
+------------------coke warehouse stuff-------------------------------
+----------------------------------------------------------------------
 function clubWarehouseCoke()
  TPPLAYER(GetPlayerPed(PlayerId()), 1093.59, -3196.6, -38.99)
     markerLoop = false
@@ -329,6 +444,9 @@ function clubWarehouseCoke()
 	ClearMenu()
     Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
 end
+----------------------------------------------------------------------
+------------------meth warehouse stuff-------------------------------
+----------------------------------------------------------------------
 function clubWarehouseMeth()
  TPPLAYER(GetPlayerPed(PlayerId()), 1009.48, -3196.6, -38.99)
     markerLoop = false
@@ -340,6 +458,9 @@ function clubWarehouseMeth()
 
     Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
 end
+----------------------------------------------------------------------
+------------------weed warehouse stuff-------------------------------
+----------------------------------------------------------------------
 function clubWarehouseWeed()
  TPPLAYER(GetPlayerPed(PlayerId()), 1062.29, -3182.60, -39.162)
     markerLoop = false
@@ -348,8 +469,47 @@ function clubWarehouseWeed()
     options.menu_title = "clubhouse's"
     options.menu_subtitle = "choose your warehouse contents"
 	ClearMenu()
-
+    Menu.addButton("enable first tier equip", "enableCase0", nil)
+	Menu.addButton("enable set up", "enableCase1", nil)
+	Menu.addButton("enable weed growth stage 1", "enableCase2", nil)
+	Menu.addButton("enable case 0", "enableCase3", nil)
     Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil) 
+end
+function enableCase0()
+ EnableInteriorProp(interiorID, "weed_standard_equip")
+ EnableInteriorProp(interiorID, "weed_low_security")
+ EnableInteriorProp(interiorID, "weed_chairs")
+ RefreshInterior(interiorID)
+end
+function enableCase1()
+ EnableInteriorProp(interiorID, "weed_set_up")
+ RefreshInterior(interiorID)
+end
+function enableCase2()
+ EnableInteriorProp(interiorID, "weed_hosea")
+ EnableInteriorProp(interiorID, "weed_hoseb")
+ EnableInteriorProp(interiorID, "weed_hosec")
+ EnableInteriorProp(interiorID, "weed_hosed")
+ EnableInteriorProp(interiorID, "weed_hosee")
+ EnableInteriorProp(interiorID, "weed_hosef")
+ EnableInteriorProp(interiorID, "weed_hoseg")
+ EnableInteriorProp(interiorID, "weed_hoseh")
+ EnableInteriorProp(interiorID, "weed_hosei")
+ EnableInteriorProp(interiorID, "weed_growtha_stage1")
+ EnableInteriorProp(interiorID, "weed_growthb_stage1")
+ EnableInteriorProp(interiorID, "weed_growthc_stage1")
+ EnableInteriorProp(interiorID, "weed_growthd_stage1")
+ EnableInteriorProp(interiorID, "weed_growthe_stage1")
+ EnableInteriorProp(interiorID, "weed_growthf_stage1")
+ EnableInteriorProp(interiorID, "weed_growthg_stage1")
+ EnableInteriorProp(interiorID, "weed_growthh_stage1")
+ EnableInteriorProp(interiorID, "weed_growthi_stage1")
+ RefreshInterior(interiorID)
+end
+function enableCase3()
+ EnableInteriorProp(interiorID, "weed_chairs")
+
+ RefreshInterior(interiorID)
 end
 function clubWarehouseChoose3()
  TPPLAYER(GetPlayerPed(PlayerId()), 984.96, -95.20, 74.847)
@@ -501,6 +661,7 @@ function walls(n)
  bikerClubhousInteriorDecorationsMenu()
  walls1 = "Walls_0"..n
  EnableInteriorProp(interiorID, walls1)
+ EnableInteriorProp(interiorID, "lower_walls_default")
  RefreshInterior(interiorID)
 end
 function furnishings(o)
@@ -626,17 +787,43 @@ end
 ------------------------------------------------------------------
 --[[*************************************************************]]
 
+function importExportInteriorMenu()
+    DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
+	Notify("Press ~r~F5 ~w~to ~g~open~w~/~r~close~w~!")
+    options.menu_title = "import export menu"
+    options.menu_subtitle = "import export menu"
+    ClearMenu()
+    Menu.addButton("Import Export 20 car carage", "impExp20CarGarageArc1Menu", nil)
+	Menu.addButton("~o~BACK TO MAIN MENU", "Main", nil)
+
+end
+
 function importExportInteriorDecorationsMenu()
     DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
 	Notify("Press ~r~F5 ~w~to ~g~open~w~/~r~close~w~!")
     options.menu_title = "import export menu"
     options.menu_subtitle = "import export menu"
     ClearMenu()
-    Menu.addButton("~g~Import Export med styles", "impExpMedStyleMenu", nil)
-    Menu.addButton("~g~Import Export large styles", "impExpLargeStyleMenu", nil)
+    Menu.addButton("~g~Import Export med garage", "impExp20CarGarageArc1Menu", nil)
 	Menu.addButton("~o~BACK TO MAIN MENU", "Main", nil)
 
 end
+function impExp20CarGarageArc1Menu()
+    RequestIpl("imp_impexp_interior_placement_interior_1_impexp_intwaremed_milo_")
+	TPPLAYER(GetPlayerPed(PlayerId()), -191.017, -579.150, 135.99)
+end
+function impExp20carStyleMenu()
+    RequestIpl("hei_dt1_02_ImpExpProxy_c")
+	
+    DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
+	Notify("Press ~r~F5 ~w~to ~g~open~w~/~r~close~w~!")
+    options.menu_title = "import export menu"
+    options.menu_subtitle = "import export menu"
+    ClearMenu()
+	Menu.addButton("~g~enable interior prop", "impExpMedStyleMenu", nil)
+	Menu.addButton("~o~BACK TO MAIN MENU", "Main", nil)	
+end
+  
 function impExpMedStyleMenu()
     DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
 	Notify("Press ~r~F5 ~w~to ~g~open~w~/~r~close~w~!")
@@ -757,3 +944,4 @@ Citizen.CreateThread(function()
      Menu.renderGUI(options) -- Draw menu on each tick if Menu.hidden = fals
 	end       
 end)
+EnableMpDlcMaps()
