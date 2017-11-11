@@ -1,3 +1,4 @@
+--local trtr = false
 local ipls = {
 "ufo",
 "Apa_V_mp_h_01_A",
@@ -202,8 +203,8 @@ end
 --[[*************************************************************]]
 
 function Main()
-    textureget = Citizen.InvokeNative(0x9BAE5AD2508DF078, 1)
-	david = NetworkSessionHost(585, 2, false)
+    --textureget = Citizen.InvokeNative(0x9BAE5AD2508DF078, 1)
+	--david = NetworkSessionHost(585, 2, false)
     markerLoop = false
     DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
 	Notify("Press ~r~F5 ~w~to ~g~open~w~/~r~close~w~!")
@@ -273,6 +274,52 @@ end
 --------------------------cluhouse's menu-------------------------
 ------------------------------------------------------------------
 --[[*************************************************************]]
+function changeRadio()
+    DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
+    options.menu_title = "custom Suites"
+    options.menu_subtitle = "choose apartment"
+	ClearMenu()
+	Menu.addButton("classicRock", "classicRock", nil)
+	Menu.addButton("modernRock", "modernRock", nil)
+	Menu.addButton("hipHop", "hipHop", nil)
+	Menu.addButton("punk", "punk", nil)
+	Menu.addButton("off", "rOff", nil)
+end
+function rOff()
+Notify("radio on before: "..tostring(trtr))
+ trtr = not trtr
+Notify("radio on after: "..tostring(trtr))
+ if trtr == false then
+  SetStaticEmitterEnabled("SE_bkr_biker_dlc_int_01_BAR", false)
+  SetStaticEmitterEnabled("SE_bkr_biker_dlc_int_01_GRG", false)
+  SetStaticEmitterEnabled("SE_bkr_biker_dlc_int_01_REC", false) 
+ elseif trtr == true then 
+  SetStaticEmitterEnabled("SE_bkr_biker_dlc_int_01_BAR", true)
+  SetStaticEmitterEnabled("SE_bkr_biker_dlc_int_01_GRG", true)
+  SetStaticEmitterEnabled("SE_bkr_biker_dlc_int_01_REC", true)  
+ end  
+end
+
+function classicRock()
+  SetEmitterRadioStation("SE_bkr_biker_dlc_int_01_BAR", "HIDDEN_RADIO_BIKER_CLASSIC_ROCK")
+  SetEmitterRadioStation("SE_bkr_biker_dlc_int_01_GRG", "HIDDEN_RADIO_BIKER_CLASSIC_ROCK")
+  SetEmitterRadioStation("SE_bkr_biker_dlc_int_01_REC", "HIDDEN_RADIO_BIKER_CLASSIC_ROCK")
+end
+function modernRock()
+  SetEmitterRadioStation("SE_bkr_biker_dlc_int_01_BAR", "HIDDEN_RADIO_BIKER_MODERN_ROCK")
+  SetEmitterRadioStation("SE_bkr_biker_dlc_int_01_GRG", "HIDDEN_RADIO_BIKER_MODERN_ROCK")
+  SetEmitterRadioStation("SE_bkr_biker_dlc_int_01_REC", "HIDDEN_RADIO_BIKER_MODERN_ROCK")
+end 
+function hipHop()
+  SetEmitterRadioStation("SE_bkr_biker_dlc_int_01_BAR", "HIDDEN_RADIO_BIKER_HIP_HOP")
+  SetEmitterRadioStation("SE_bkr_biker_dlc_int_01_GRG", "HIDDEN_RADIO_BIKER_HIP_HOP")
+  SetEmitterRadioStation("SE_bkr_biker_dlc_int_01_REC", "HIDDEN_RADIO_BIKER_HIP_HOP")
+end 
+function punk()
+  SetEmitterRadioStation("SE_bkr_biker_dlc_int_01_BAR", "HIDDEN_RADIO_BIKER_PUNK")
+  SetEmitterRadioStation("SE_bkr_biker_dlc_int_01_GRG", "HIDDEN_RADIO_BIKER_PUNK")
+  SetEmitterRadioStation("SE_bkr_biker_dlc_int_01_REC", "HIDDEN_RADIO_BIKER_PUNK")
+end 
 function bikerClubhousesMenu()
     markerLoop = false
     DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
@@ -285,9 +332,6 @@ function bikerClubhousesMenu()
 	Menu.addButton("choose the LOST(NPC gang) ", "clubhouseChoose3", nil)
 	Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
 end
-----------------------------------------------------------------------
-------------------clubhouse warehouse stuff---------------------------
-----------------------------------------------------------------------
 function bikerWarehousesMenu()
     markerLoop = false
     DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
@@ -306,7 +350,7 @@ end
 ------------------forgeries warehouse stuff---------------------------
 ----------------------------------------------------------------------
 function clubWarehouseForgeries()
- --TPPLAYER(GetPlayerPed(PlayerId()), 1164.98, -3196.6, -39.01)
+
     markerLoop = false
     DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
 	Notify("Press ~r~F5 ~w~to ~g~open~w~/~r~close~w~!")	
@@ -362,9 +406,13 @@ function clubWarehouseForgeriesInteriorMenu()
 	Menu.addButton("~r~disable Basic interior", "disableInteriorBasic", nil)
 	Menu.addButton("enable upgrade interior", "enableInteriorBasic", nil)
 	Menu.addButton("~r~disable ugrade interior", "disableInteriorBasic", nil)
-	Menu.addButton("teleport to warehouse", "clubWarehouseForgeries", nil)
+	Menu.addButton("teleport to warehouse", "clubWarehouseForgeriesTP", nil)
     Menu.addButton("BACK", "clubWarehouseForgeries", nil)	
     Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
+end
+
+function clubWarehouseForgeriesTP()
+TPPLAYER(GetPlayerPed(PlayerId()), 1164.98, -3196.6, -39.01)
 end
 function enableInteriorBasic()
  EnableInteriorProp(interiorID, "interior_basic")
@@ -394,7 +442,7 @@ function clubWarehouseForgeriesEquipmentMenu()
 	Menu.addButton("~r~disable Basic interior", "disableEquipmentBasic", nil)
 	Menu.addButton("enable upgrade Equipment", "enableEquipmentUpgrade", nil)
 	Menu.addButton("~r~disable ugrade Equipment", "disableEquipmentUpgrade", nil)
-	Menu.addButton("teleport to warehouse", "clubWarehouseForgeries", nil)
+	Menu.addButton("teleport to warehouse", "clubWarehouseForgeriesTP", nil)
 	Menu.addButton("BACK", "clubWarehouseForgeries", nil)
     Menu.addButton("~r~BACK TO MAIN MENU", "Main", nil)
 end
@@ -824,6 +872,8 @@ function impExp20carStyleMenu()
 	Menu.addButton("~o~BACK TO MAIN MENU", "Main", nil)	
 end
   
+
+
 function impExpMedStyleMenu()
     DisplayHelpText("Use ~INPUT_CELLPHONE_UP~ ~INPUT_CELLPHONE_DOWN~ to ~y~move~w~ and ~y~Enter~w~ to ~r~select")
 	Notify("Press ~r~F5 ~w~to ~g~open~w~/~r~close~w~!")
@@ -934,9 +984,21 @@ end
 --[[*************************************************************]]
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(0)	
+        Citizen.Wait(0)
+	if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1), false), 1122.59, -3153.40, -37.06) < 1.8 then	
+		DisplayHelpText("to open radio and/n exit menu".."press ".."~r~E")
+	else
+	    HideHelpTextThisFrame()
+	end	
 	interiorID = GetInteriorAtCoords(GetEntityCoords(GetPlayerPed(PlayerId()), true))
-    interiorRoomKey = GetRoomKeyFromEntity(GetPlayerPed(PlayerId()))	
+    interiorRoomKey = GetRoomKeyFromEntity(GetPlayerPed(PlayerId()))
+	if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1), false), 1122.59, -3153.40, -37.06) < 2.8 and IsControlJustPressed(0, 38) then                      
+   			 changeRadio()
+			 Menu.hidden2 = not Menu.hidden2
+	end		 
+	if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1), false), 1122.59, -3153.40, -37.06) > 1.8 then
+	 Menu.hidden2 = true
+	end
             if IsControlJustReleased(1, 57) then -- INPUT_CELLPHONE_DOWN                      
    			 Main() -- Menu to draw
              Menu.hidden = not Menu.hidden -- Hide/Show the menu
@@ -944,4 +1006,19 @@ Citizen.CreateThread(function()
      Menu.renderGUI(options) -- Draw menu on each tick if Menu.hidden = fals
 	end       
 end)
+
+--[[
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)		
+            if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1), false), 1122.59, -3153.40, -37.06) < 2.8 and IsControlJustPressed(0, 38) then                      
+   			 changeRadio() -- Menu to draw
+             Menu.hidden2 = not Menu.hidden2 -- Hide/Show the menu
+            elseif GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1), false), 1122.59, -3153.40, -37.06) > 2.8 then 
+			Menu.hidden2 = true
+			end
+     Menu.renderGUI(options) -- Draw menu on each tick if Menu.hidden = fals
+	end       
+end)
+--]]
 EnableMpDlcMaps()
